@@ -34,15 +34,15 @@ public class About {
 	@ConfigVersionDisplay
 	public transient Void currentVersion = null;
 
-	@ConfigOption(name = "Check for Updates", desc = "Automatically check for updates on each startup")
-	@Expose
-	@ConfigEditorBoolean
-	public boolean autoUpdates = true;
+	//@ConfigOption(name = "Check for Updates", desc = "Automatically check for updates on each startup")
+	//@ConfigEditorBoolean
+	// UPDATES DISABLED
+	public boolean autoUpdates = false;
 
-	@ConfigOption(name = "Update Stream", desc = "How often do you want to get updates")
-	@Expose
-	@ConfigEditorDropdown
-	public Property<UpdateStream> updateStream = Property.of(UpdateStream.FULL);
+	//@ConfigOption(name = "Update Stream", desc = "How often do you want to get updates")
+	//@Expose
+	//@ConfigEditorDropdown
+	public Property<UpdateStream> updateStream = Property.of(UpdateStream.NONE);
 
 	@ConfigOption(name = "Used Software", desc = "Information about used software and licenses")
 	@Accordion

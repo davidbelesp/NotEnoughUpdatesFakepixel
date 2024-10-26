@@ -89,6 +89,11 @@ object AutoUpdater {
     }
 
     fun checkUpdate() {
+
+        /* UPDATES DISABLED */
+
+        return
+        /*
         if (updateState != UpdateState.NONE) {
             logger.error("Trying to perform update check while another update is already in progress")
             return
@@ -133,6 +138,7 @@ object AutoUpdater {
                     }
                 }
             }, MinecraftExecutor.OnThread)
+         */
     }
 
     fun queueUpdate() {
@@ -169,10 +175,14 @@ object AutoUpdater {
 
     @SubscribeEvent
     fun onPlayerAvailableOnce(event: TickEvent.ClientTickEvent) {
+        // Disabling auto updates to prevent this version from being replaced
+        /*
         val p = Minecraft.getMinecraft().thePlayer ?: return
         MinecraftForge.EVENT_BUS.unregister(this)
         if (config.autoUpdates)
             checkUpdate()
+        */
+        return
     }
 
 
@@ -180,7 +190,8 @@ object AutoUpdater {
     fun testCommand(event: RegisterBrigadierCommandEvent) {
         event.command("neuinternalupdatenow") {
             thenExecute {
-                queueUpdate()
+                val p = Minecraft.getMinecraft().thePlayer ?: return@thenExecute
+                p.addChatMessage(ChatComponentText("\u00a7c UPDATES NOT ENABLED"))
             }
         }
     }
