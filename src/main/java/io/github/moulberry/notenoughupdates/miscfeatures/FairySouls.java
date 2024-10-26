@@ -282,7 +282,16 @@ public class FairySouls {
 			return null;
 		}
 
-		JsonArray locations = fairySoulList.get(currentLocation).getAsJsonArray();
+		JsonArray locations = new JsonArray();
+
+		if(currentLocation == "mining_1"){
+			// mix the JSON array from mining_1 and mining_2 since in Fakepixel they are the same location
+			fairySoulList.get("mining_1").getAsJsonArray().forEach(locations::add);
+			fairySoulList.get("mining_2").getAsJsonArray().forEach(locations::add);
+		} else {
+			locations = fairySoulList.get(currentLocation).getAsJsonArray();
+		}
+
 		List<BlockPos> locationSouls = new ArrayList<>();
 		for (int i = 0; i < locations.size(); i++) {
 			try {
@@ -368,7 +377,7 @@ public class FairySouls {
 		if (!trackSouls || event.type == 2) return;
 
 		var cleanString = StringUtils.cleanColour(event.message.getUnformattedText());
- 		if (cleanString.equals("You have already found that Fairy Soul!") || cleanString.equals("SOUL! You found a Fairy Soul!")) {
+ 		if (cleanString.equals("You already found that Fairy Soul!") || cleanString.equals("SOUL! You found a Fairy Soul!")) {
 			markClosestSoulFound();
 		}
 	}
