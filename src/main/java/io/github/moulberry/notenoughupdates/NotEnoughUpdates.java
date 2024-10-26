@@ -479,9 +479,8 @@ public class NotEnoughUpdates {
 	public void updateSkyblockScoreboard() {
 		Minecraft mc = Minecraft.getMinecraft();
 
-		if (mc != null && mc.theWorld != null && mc.thePlayer != null &&
-			mc.thePlayer.getClientBrand().contains("Fakepixel")) {
-			if (mc.thePlayer.getClientBrand() == null) {
+		if (mc != null && mc.theWorld != null && mc.thePlayer != null) {
+			if (mc.thePlayer.getClientBrand() == null && mc.thePlayer.getClientBrand().contains("Fakepixel")) {
 				hasSkyblockScoreboard = false;
 				return;
 			}
