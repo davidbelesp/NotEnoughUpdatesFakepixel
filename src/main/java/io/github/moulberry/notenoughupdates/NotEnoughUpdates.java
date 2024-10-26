@@ -479,9 +479,9 @@ public class NotEnoughUpdates {
 	public void updateSkyblockScoreboard() {
 		Minecraft mc = Minecraft.getMinecraft();
 
-		if (mc != null && mc.theWorld != null && mc.thePlayer != null) {
-			if (mc.isSingleplayer() || mc.thePlayer.getClientBrand() == null ||
-				!mc.thePlayer.getClientBrand().toLowerCase(Locale.ROOT).contains("hypixel")) {
+		if (mc != null && mc.theWorld != null && mc.thePlayer != null &&
+			mc.thePlayer.getClientBrand().contains("Fakepixel")) {
+			if (mc.thePlayer.getClientBrand() == null) {
 				hasSkyblockScoreboard = false;
 				return;
 			}
@@ -490,8 +490,9 @@ public class NotEnoughUpdates {
 			ScoreObjective sidebarObjective = scoreboard.getObjectiveInDisplaySlot(1);
 			if (sidebarObjective != null) {
 				String objectiveName = sidebarObjective.getDisplayName().replaceAll("(?i)\\u00A7.", "");
+
 				for (String skyblock : SKYBLOCK_IN_ALL_LANGUAGES) {
-					if (objectiveName.startsWith(skyblock)) {
+					if (objectiveName.toUpperCase(Locale.ROOT).contains(skyblock)) {
 						hasSkyblockScoreboard = true;
 						return;
 					}
