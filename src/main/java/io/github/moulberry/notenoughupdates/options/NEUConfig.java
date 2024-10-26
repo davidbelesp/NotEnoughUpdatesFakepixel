@@ -368,7 +368,7 @@ public class NEUConfig extends Config {
 	@Expose
 	@Category(
 		name = "Storage GUI",
-		desc = "Storage GUI"
+		desc = "\u00a7cStorage GUI is NOT SUPPORTED by Fakepixel by now"
 	)
 	public StorageGUI storageGUI = new StorageGUI();
 

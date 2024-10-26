@@ -191,7 +191,7 @@ object AutoUpdater {
         event.command("neuinternalupdatenow") {
             thenExecute {
                 val p = Minecraft.getMinecraft().thePlayer ?: return@thenExecute
-                p.addChatMessage(ChatComponentText("\u00a7c UPDATES NOT ENABLED"))
+                p.addChatMessage(ChatComponentText("\u00a7cUPDATES DISABLED\u00a7r in this version."))
             }
         }
     }

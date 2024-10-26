@@ -57,7 +57,7 @@ public class StorageGUI {
 	)
 	@ConfigEditorBoolean
 	@ConfigAccordionId(id = 1)
-	public boolean enableStorageGUI3 = true;
+	public boolean enableStorageGUI3 = false;
 
 	@Expose
 	@ConfigOption(
