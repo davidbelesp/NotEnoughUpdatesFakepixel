@@ -28,7 +28,11 @@
     </a>
 </div>
 
-NotEnoughUpdates (NEU) is a feature rich 1.8.9 Minecraft forge mod for Hypixel Skyblock.
+## Fakepixel adaptation
+
+This NEU version was modified to be compatible with Fakepixel server. The mod is work in progress, for more information dm **@dbsp** in Discord
+
+NotEnoughUpdates (NEU) is a feature rich 1.8.9 Minecraft forge mod for Fakepixel Skyblock.
 
 ## Getting Started
 
