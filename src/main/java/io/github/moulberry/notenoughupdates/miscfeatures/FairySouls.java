@@ -274,45 +274,27 @@ public class FairySouls {
 
 	private static List<BlockPos> loadLocationFairySoulsFromConfig(String currentLocation) {
 		JsonObject fairySoulList = Constants.FAIRYSOULS;
-		if (fairySoulList == null) {
-			return null;
-		}
-
-		if (!fairySoulList.has(currentLocation) || !fairySoulList.get(currentLocation).isJsonArray()) {
+		if (fairySoulList == null ||
+			!fairySoulList.has(currentLocation) ||
+			!fairySoulList.get(currentLocation).isJsonArray()) {
 			return null;
 		}
 
 		JsonArray locations = new JsonArray();
+		List<BlockPos> locationSouls;
 
-		if(currentLocation == "mining_1"){
+		if("mining_1".equals(currentLocation)){
 			// mix the JSON array from mining_1 and mining_2 since in Fakepixel they are the same location
 			fairySoulList.get("mining_1").getAsJsonArray().forEach(locations::add);
-			fairySoulList.get("mining_2").getAsJsonArray().forEach(locations::add);
+			locationSouls = jsonLocationsToBlockPos(locations, 0, 0, 0);
+
+			// The mining_2 points are in an offset location, so we need to adjust them
+			// ie : [-2, 255, -1] -> [-8, 255, -575]
+			JsonArray mining2Locations = fairySoulList.get("mining_2").getAsJsonArray();
+			locationSouls.addAll(jsonLocationsToBlockPos(mining2Locations, -6, 0, -574));
 		} else {
 			locations = fairySoulList.get(currentLocation).getAsJsonArray();
-		}
-
-		List<BlockPos> locationSouls = new ArrayList<>();
-		for (int i = 0; i < locations.size(); i++) {
-			try {
-				String coord = locations.get(i).getAsString();
-
-				String[] split = coord.split(",");
-				if (split.length == 3) {
-					String xS = split[0];
-					String yS = split[1];
-					String zS = split[2];
-
-					int x = Integer.parseInt(xS);
-					int y = Integer.parseInt(yS);
-					int z = Integer.parseInt(zS);
-
-					locationSouls.add(new BlockPos(x, y, z));
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-				return null;
-			}
+			locationSouls = jsonLocationsToBlockPos(locations);
 		}
 
 		if (locationSouls.size() == 0) {
@@ -320,6 +302,31 @@ public class FairySouls {
 		}
 
 		return locationSouls;
+	}
+
+	public static ArrayList<BlockPos> jsonLocationsToBlockPos(JsonArray jsonLocations){
+		return jsonLocationsToBlockPos(jsonLocations, 0, 0, 0);
+	}
+
+	public static ArrayList<BlockPos> jsonLocationsToBlockPos(JsonArray jsonLocations, int offsetX, int offsetY, int offsetZ) {
+		ArrayList<BlockPos> returnArray = new ArrayList<>();
+
+		for (int i = 0; i < jsonLocations.size(); i++) {
+			try {
+				String[] split = jsonLocations.get(i).getAsString().split(",");
+				if (split.length == 3) {
+					int x = Integer.parseInt(split[0]) + offsetX;
+					int y = Integer.parseInt(split[1]) + offsetY;
+					int z = Integer.parseInt(split[2]) + offsetZ;
+					returnArray.add(new BlockPos(x, y, z));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
+
+		return returnArray;
 	}
 
 	public void loadFoundSoulsForAllProfiles(File file, Gson gson) {
