@@ -274,6 +274,16 @@ public class FairySouls {
 	}
 
 	private static List<BlockPos> loadLocationFairySoulsFromConfig(String currentLocation) {
+		// safety check
+		if (currentLocation == null) {
+			return null;
+		}
+
+		// Fix for crimson isle called combat_2 in the fakepixel server
+		if (currentLocation.equals("combat_2")) {
+			currentLocation = "crimson_isle";
+		}
+
 		JsonObject fairySoulList = Constants.FAIRYSOULS;
 		if (fairySoulList == null ||
 			!fairySoulList.has(currentLocation) ||
