@@ -35,6 +35,7 @@ import io.github.moulberry.notenoughupdates.util.Utils;
 import lombok.var;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
