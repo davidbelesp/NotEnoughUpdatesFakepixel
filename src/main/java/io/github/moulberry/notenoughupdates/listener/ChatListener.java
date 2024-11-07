@@ -182,6 +182,41 @@ public class ChatListener {
 		);
 	}
 
+	@SubscribeEvent(priority = EventPriority.LOW, receiveCanceled = true)
+	public void onChatReceived(ClientChatReceivedEvent e) {
+
+		// Riddle Solver
+		if(NotEnoughUpdates.INSTANCE.config.dungeons.riddleSolver && SBInfo.getInstance().isInDungeon) {
+			// code to get the message and search if pattern matches
+			System.out.println("FORMATTED TEXT: " + e.message.getFormattedText());
+			String message = Utils.cleanColour(e.message.getUnformattedText());
+			if(message.startsWith("[NPC]")){
+
+				// Here we split the message into the NPC name and the message
+				String[] split = message.split(":");
+				String npcName = split[0].substring(6);
+				String npcMessage = split[1].substring(1);
+
+				// Here we check if the message contains the pattern
+				if(npcMessage.contains("The reward is not in my chest!") ||
+					npcMessage.contains("The reward isn't in any of our chests.") ||
+					npcMessage.contains("My chest doesn't have the reward we are all telling the truth.") ||
+					npcMessage.contains("My chest has the reward and I'm telling the truth!") ||
+					npcMessage.contains("At least one of them is lying, and the reward is not in") ||
+					npcMessage.contains("Both of them are telling the truth. Also,")){
+
+					// Here we send a message to inform its the correct answer
+					Minecraft.getMinecraft().thePlayer.addChatMessage(
+						new ChatComponentText(EnumChatFormatting.GREEN + "[Riddle Solver] " + EnumChatFormatting.RESET + npcName + " has the reward in their chest!")
+					);
+				}
+				//TODO make a constant for the messages
+			}
+		}
+	}
+
+	//Unable to locate sign at
+
 	/**
 	 * 1) When receiving "You are playing on profile" messages, will set the current profile.
 	 * 2) When a /viewrecipe command fails (i.e. player does not have recipe unlocked, will open the custom recipe GUI)

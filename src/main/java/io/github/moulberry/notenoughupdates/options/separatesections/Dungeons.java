@@ -62,6 +62,21 @@ public class Dungeons {
 	public boolean showOwnHeadAsMarker = false;
 
 	@ConfigOption(
+		name = "Puzzle Solvers",
+		desc = "Solvers for puzzles in dungeons"
+	)
+	@ConfigEditorAccordion(id = 5)
+	public boolean puzzleSolvers = false;
+
+	@Expose
+	@ConfigOption(
+		name = "Riddle solver",
+		desc = "Solves the three weirdos puzzle"
+	)@ConfigEditorBoolean()
+	@ConfigAccordionId(id = 5)
+	public boolean riddleSolver = false;
+
+	@ConfigOption(
 		name = "Dungeon Profit",
 		desc = ""
 	)
