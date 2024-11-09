@@ -178,20 +178,18 @@ public class CustomItemEffects {
 			String internal = NotEnoughUpdates.INSTANCE.manager.getInternalNameForItem(held);
 			if (internal != null) {
 				boolean shadowWarp = false;
-				if (internal.equals("HYPERION") || internal.equals("VALKYRIE") || internal.equals("SCYLLA") || internal.equals(
-					"ASTRAEA")) {
+				if (internal.equals("HYPERION")
+					|| internal.equals("VALKYRIE")
+					|| internal.equals("SCYLLA")
+					|| internal.equals("ASTRAEA")) {
 					NBTTagCompound tag = held.getTagCompound();
 					if (tag != null && tag.hasKey("ExtraAttributes", 10)) {
 						NBTTagCompound ea = tag.getCompoundTag("ExtraAttributes");
-						if (ea != null && ea.hasKey("ability_scroll", 9)) {
-							NBTTagList list = ea.getTagList("ability_scroll", 8);
-							for (int i = 0; i < list.tagCount(); i++) {
-								if (list.getStringTagAt(i).equals("IMPLOSION_SCROLL")) {
-									lastUsedHyperion = System.currentTimeMillis();
-								} else if (list.getStringTagAt(i).equals("SHADOW_WARP_SCROLL")) {
-									shadowWarp = true;
-								}
-							}
+						if (ea != null && ea.getTag("implosion").toString().equals("1b")) {
+							lastUsedHyperion = System.currentTimeMillis();
+						} else if (ea.getTag("shadow_warp") != null) {
+
+							shadowWarp = true;
 						}
 					}
 				}
