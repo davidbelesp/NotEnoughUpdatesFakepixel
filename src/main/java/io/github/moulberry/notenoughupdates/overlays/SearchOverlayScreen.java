@@ -487,11 +487,12 @@ public class SearchOverlayScreen extends GuiEditSign {
 
 		if (keyCode == Keyboard.KEY_ESCAPE) {
 			searchStringExtra = "";
-			if (escFullClose()) {
-				Minecraft.getMinecraft().displayGuiScreen(null);
-			} else {
-				close(this.tileSign);
-			}
+			// No events when ESC
+//			if (escFullClose()) {
+//				Minecraft.getMinecraft().displayGuiScreen(null);
+//			} else {
+//				close(this.tileSign);
+//			}
 			return;
 		} else if (keyCode == Keyboard.KEY_RETURN) {
 			searchStringExtra = "";

@@ -83,14 +83,14 @@ public class AuctionSearchOverlay extends SearchOverlayScreen {
 		}
 
 		String lastContainer = Utils.getLastOpenChestName();
-		if (!lastContainer.equals("Auctions Browser") && !lastContainer.startsWith("Auctions: ")) return false;
+		if (!lastContainer.equals("Auction Browser") && !lastContainer.startsWith("Auctions: ")) return false;
 
 		TileEntitySign tes = ((AccessorGuiEditSign) Minecraft.getMinecraft().currentScreen).getTileSign();
 
 		if (tes == null) return false;
-		if (tes.getPos().getY() != 0) return false;
-		if (!tes.signText[2].getUnformattedText().equals("^^^^^^^^^^^^^^^")) return false;
-		return tes.signText[3].getUnformattedText().equals("Enter query");
+		if (tes.getPos().getY() != 1) return false;
+		if (!tes.signText[1].getUnformattedText().equals("^^^^^^^^^^^^^^^")) return false;
+		return tes.signText[2].getUnformattedText().equals("Enter Your");
 	}
 
 
@@ -100,7 +100,7 @@ public class AuctionSearchOverlay extends SearchOverlayScreen {
 		if (disableClientSideGUI()) return;
 		if (event.clickedButton == 1 && event.clickType == 0) return;
 		if (!CookieWarning.hasActiveBoosterCookie()) return;
-		if (!Utils.getOpenChestName().startsWith("Auctions")) return;
+		if (!Utils.getOpenChestName().startsWith("Auction")) return;
 		ItemStack stack = event.slot.getStack();
 		if (event.slot.slotNumber == 48 && stack != null && stack.hasDisplayName() && stack.getItem() == Items.sign && stack.getDisplayName().equals("§aSearch")) {
 			event.setCanceled(true);
