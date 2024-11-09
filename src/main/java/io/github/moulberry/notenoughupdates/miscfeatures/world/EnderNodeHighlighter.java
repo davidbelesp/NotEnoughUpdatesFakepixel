@@ -33,6 +33,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import static io.github.moulberry.notenoughupdates.util.MathUtil.basicallyEqual;
+import static io.github.moulberry.notenoughupdates.util.MathUtil.truncateTwoDecimalPlaces;
 
 @NEUAutoSubscribe
 public class EnderNodeHighlighter extends GenericBlockHighlighter {
@@ -53,26 +54,32 @@ public class EnderNodeHighlighter extends GenericBlockHighlighter {
 			double y = event.getYCoord();
 			double z = event.getZCoord();
 
-			boolean xZero = basicallyEqual((x - 0.5) % 1, 0, 0.2);
-			boolean yZero = basicallyEqual((y - 0.5) % 1, 0, 0.2);
-			boolean zZero = basicallyEqual((z - 0.5) % 1, 0, 0.2);
+			double dist = 0.2;
 
-			if (Math.abs(y % 1) == 0.25 && xZero && zZero) {
+			boolean xZero = basicallyEqual((x) % 1, 0, dist);
+			boolean yZero = basicallyEqual((y) % 1, 0, dist);
+			boolean zZero = basicallyEqual((z) % 1, 0, dist);
+
+		  double truncX = truncateTwoDecimalPlaces(Math.abs(x % 1));
+			double truncY = truncateTwoDecimalPlaces(Math.abs(y % 1));
+			double truncZ = truncateTwoDecimalPlaces(Math.abs(z % 1));
+
+			if (truncY < 0.25 && xZero && zZero) {
 				if (tryRegisterInterest(x, y - 1, z)) return;
 			}
-			if (Math.abs(y % 1) == 0.75 && xZero && zZero) {
+			if (truncY > 0.75 && xZero && zZero) {
 				if (tryRegisterInterest(x, y + 1, z)) return;
 			}
-			if (Math.abs(x % 1) == 0.25 && yZero && zZero) {
+			if (truncX < 0.25 && yZero && zZero) {
 				if (tryRegisterInterest(x + 1, y, z)) return;
 			}
-			if (Math.abs(x % 1) == 0.75 && yZero && zZero) {
+			if (truncX > 0.75 && yZero && zZero) {
 				if (tryRegisterInterest(x - 1, y, z)) return;
 			}
-			if (Math.abs(z % 1) == 0.25 && yZero && xZero) {
+			if (truncZ < 0.25 && yZero && xZero) {
 				if (tryRegisterInterest(x, y, z + 1)) return;
 			}
-			if (Math.abs(z % 1) == 0.75 && yZero && xZero) {
+			if (truncZ < 0.75 && yZero && xZero) {
 				tryRegisterInterest(x, y, z - 1);
 			}
 		}

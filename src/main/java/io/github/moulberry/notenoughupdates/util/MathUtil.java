@@ -29,4 +29,8 @@ public class MathUtil {
 	public static boolean basicallyEqual(double num1, double num2) {
 		return Math.abs(num1 - num2) < 0.01;
 	}
+
+	public static double truncateTwoDecimalPlaces(double value) {
+		return Math.floor(value * 100) / 100;
+	}
 }
