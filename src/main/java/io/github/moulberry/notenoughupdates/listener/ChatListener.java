@@ -195,7 +195,7 @@ public class ChatListener {
 				// Here we split the message into the NPC name and the message
 				String[] split = message.split(":");
 				String npcName = split[0].substring(6);
-				String npcMessage = split[1].substring(1);
+				String npcMessage = split[1].substring(0);
 
 				// Here we check if the message contains the pattern
 				if(npcMessage.contains("The reward is not in my chest!") ||
@@ -210,7 +210,6 @@ public class ChatListener {
 						new ChatComponentText(EnumChatFormatting.GREEN + "[Riddle Solver] " + EnumChatFormatting.RESET + npcName + " has the reward in their chest!")
 					);
 				}
-				//TODO make a constant for the messages
 			}
 		}
 	}
