@@ -82,7 +82,7 @@ public class SlayerOverlay extends TextOverlay {
 		switch (SBInfo.getInstance().slayer) {
 			case "Tarantula":
 				if (!locrawLocation.equals("combat_1") &&
-					(!locrawLocation.equals("crimson_isle") || !scoreboardLocation.equals("Burning Desert"))) return false;
+					(!locrawLocation.equals("combat_2") || !scoreboardLocation.equals("Burning Desert"))) return false;
 				break;
 			case "Revenant":
 				if ((!locrawLocation.equals("hub") || !revenantLocations.contains(scoreboardLocation)) &&
@@ -97,7 +97,7 @@ public class SlayerOverlay extends TextOverlay {
 				if (!locrawLocation.equals("combat_3")) return false;
 				break;
 			case "Blaze":
-				if (!locrawLocation.equals("crimson_isle")) return false;
+				if (!locrawLocation.equals("combat_2")) return false;
 				break;
 			default:
 				//A new slayer would need an update (see SBInfo)

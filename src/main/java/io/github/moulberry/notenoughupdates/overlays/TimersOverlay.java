@@ -1106,7 +1106,7 @@ public class TimersOverlay extends TextTabOverlay {
 	@SubscribeEvent
 	public void onMatriarchTick(TickEvent.ClientTickEvent event) {
 		if (event.phase != TickEvent.Phase.END) return;
-		if (!"crimson_isle".equals(SBInfo.getInstance().getLocation())) return;
+		if (!"combat_2".equals(SBInfo.getInstance().getLocation())) return;
 		var player = Minecraft.getMinecraft().thePlayer;
 		if (player == null) return;
 		if (!matriarchArea.isVecInside(player.getPositionVector())) return;
