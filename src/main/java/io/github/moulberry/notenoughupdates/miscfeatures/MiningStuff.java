@@ -196,11 +196,10 @@ public class MiningStuff {
 			return;
 		}
 
-		if (event.message.getFormattedText().startsWith("\u00A7e[NPC] \u00A7dPuzzler") &&
+		if (event.message.getFormattedText().startsWith("\u00A7r\u00A7e[NPC] \u00A7r\u00A7dPuzzler") &&
 			event.message.getUnformattedText().contains(":")) {
 			String clean = Utils.cleanColour(event.message.getUnformattedText());
 			clean = clean.split(":")[1].trim();
-
 			BlockPos pos = new BlockPos(181, 195, 135);
 
 			for (int i = 0; i < clean.length(); i++) {
