@@ -99,7 +99,9 @@ import java.util.regex.Pattern;
 public class NotEnoughUpdates {
 	public static final String MODID = "notenoughupdates";
 	public static final String VERSION = VersionConst.VERSION;
-	private static final Pattern versionPattern = Pattern.compile("([0-9]+)\\.([0-9]+)\\.([0-9]+)");
+	private static final Pattern versionPattern = Pattern.compile(
+		"([0-9]+)\\.([0-9]+)\\.([0-9]+)u([0-9]+)\\.([0-9]+)\\.([0-9]+)"
+	);
 	public static final int VERSION_ID = parseVersion(VERSION);
 
 	private static int parseVersion(String versionName) {
