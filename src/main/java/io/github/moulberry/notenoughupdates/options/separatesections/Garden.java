@@ -21,15 +21,24 @@ package io.github.moulberry.notenoughupdates.options.separatesections;
 
 import com.google.gson.annotations.Expose;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorBoolean;
+import io.github.moulberry.moulconfig.annotations.ConfigEditorInfoText;
 import io.github.moulberry.moulconfig.annotations.ConfigOption;
 
 public class Garden {
 	@Expose
 	@ConfigOption(
+		name = "\u00a7cWarning",
+		desc = "\u00a7cThis section is disabled since there is no garden in Fakepixel Skyblock."
+	)
+	@ConfigEditorInfoText()
+	public boolean warningGarden = false;
+
+	@Expose
+	@ConfigOption(
 		name = "Mute Composter",
 		desc = "Mute sounds of composting"
 	)
-	@ConfigEditorBoolean
+	@ConfigEditorInfoText()
 	public boolean muteComposterSounds = false;
 
 	@Expose
@@ -37,14 +46,14 @@ public class Garden {
 		name = "Enable Preset Delete Warning",
 		desc = "Asks for confirmation when deleting a preset"
 	)
-	@ConfigEditorBoolean
-	public boolean presetDeleteWarning = true;
+	@ConfigEditorInfoText()
+	public boolean presetDeleteWarning = false;
 
 	@Expose
 	@ConfigOption(
 		name = "Sprayonator Cooldown",
 		desc = "Show the cooldown duration of the sprayonator."
 	)
-	@ConfigEditorBoolean
+	@ConfigEditorInfoText()
 	public boolean sprayonatorCooldown = false;
 }

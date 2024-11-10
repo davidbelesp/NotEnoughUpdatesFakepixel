@@ -55,7 +55,7 @@ public class StorageGUI {
 		desc = "Show a custom storage overlay when accessing /storage. " +
 			"Makes switching between pages much easier and also allows for searching through all storages"
 	)
-	@ConfigEditorBoolean
+	@ConfigEditorInfoText()
 	@ConfigAccordionId(id = 1)
 	public boolean enableStorageGUI3 = false;
 

@@ -199,7 +199,7 @@ public class ItemOverlays {
 	public boolean disableHyperionParticles = true;
 
 	@ConfigOption(
-		name = "Etherwarp",
+		name = "\u00a7cEtherwarp",
 		desc = ""
 	)
 	@ConfigEditorAccordion(id = 4)
@@ -208,11 +208,12 @@ public class ItemOverlays {
 	@Expose
 	@ConfigOption(
 		name = "Etherwarp Zoom",
-		desc = "Zoom in on targeted blocks with etherwarp, making it easier to adjust at a distance"
+		desc = "Zoom in on targeted blocks with etherwarp, making it easier to adjust at a distance\n" +
+			"\u00a7cWarning: This feature is disabled since there is no etherwarp"
 	)
 	@ConfigEditorBoolean
 	@ConfigAccordionId(id = 4)
-	public boolean etherwarpZoom = true;
+	public boolean etherwarpZoom = false;
 
 	@Expose
 	@ConfigOption(
@@ -221,7 +222,7 @@ public class ItemOverlays {
 	)
 	@ConfigEditorBoolean
 	@ConfigAccordionId(id = 4)
-	public boolean enableEtherwarpHelperOverlay = true;
+	public boolean enableEtherwarpHelperOverlay = false;
 
 	@Expose
 	@ConfigOption(
@@ -230,7 +231,7 @@ public class ItemOverlays {
 	)
 	@ConfigEditorBoolean
 	@ConfigAccordionId(id = 4)
-	public boolean enableEtherwarpBlockOverlay = true;
+	public boolean enableEtherwarpBlockOverlay = false;
 
 	@Expose
 	@ConfigOption(
@@ -341,7 +342,7 @@ public class ItemOverlays {
 	public boolean bonemerangFastUpdate = false;
 
 	@ConfigOption(
-		name = "Minion Crystal Radius Overlay",
+		name = "\u00a7cMinion Crystal Radius Overlay",
 		desc = ""
 	)
 	@ConfigEditorAccordion(id = 6)
@@ -350,11 +351,12 @@ public class ItemOverlays {
 	@Expose
 	@ConfigOption(
 		name = "Enable Crystal Overlay",
-		desc = "Show a block overlay for the effective radius of minion crystals (farming, mining, etc)."
+		desc = "Show a block overlay for the effective radius of minion crystals (farming, mining, etc).\n" +
+			"\u00a7cWarning: This feature is disabled as there are no minion crystals."
 	)
 	@ConfigEditorBoolean
 	@ConfigAccordionId(id = 6)
-	public boolean enableCrystalOverlay = true;
+	public boolean enableCrystalOverlay = false;
 
 	@Expose
 	@ConfigOption(

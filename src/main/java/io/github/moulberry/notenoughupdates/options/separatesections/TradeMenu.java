@@ -21,6 +21,7 @@ package io.github.moulberry.notenoughupdates.options.separatesections;
 
 import com.google.gson.annotations.Expose;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorBoolean;
+import io.github.moulberry.moulconfig.annotations.ConfigEditorInfoText;
 import io.github.moulberry.moulconfig.annotations.ConfigOption;
 
 public class TradeMenu {
@@ -35,10 +36,11 @@ public class TradeMenu {
 	@Expose
 	@ConfigOption(
 		name = "Price Information",
-		desc = "Show the price of items in the trade window on both sides"
+		desc = "Show the price of items in the trade window on both sides \n" +
+			"\u00A7cWarning: This feature is disabled as prices are from hypixel and may be inaccurate."
 	)
-	@ConfigEditorBoolean
-	public boolean customTradePrices = true;
+	@ConfigEditorInfoText()
+	public boolean customTradePrices = false;
 
 	@Expose
 	public boolean customTradePriceStyle = true;

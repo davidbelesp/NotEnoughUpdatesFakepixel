@@ -23,6 +23,7 @@ import com.google.gson.annotations.Expose;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorBoolean;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorColour;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorDropdown;
+import io.github.moulberry.moulconfig.annotations.ConfigEditorInfoText;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorKeybind;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorSlider;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorText;
@@ -32,11 +33,20 @@ import org.lwjgl.input.Keyboard;
 public class AHGraph {
 	@Expose
 	@ConfigOption(
+		name = "\u00A7cWarning",
+		desc = "This feature is not working in Fakepixel Skyblock since " +
+			"there are no graphs in bz. They use Hypixel bazaar API."
+	)
+	@ConfigEditorInfoText()
+	public boolean ahGraphWarning = false;
+
+	@Expose
+	@ConfigOption(
 		name = "Enable AH/BZ Price Graph",
 		desc = "Enable or disable the graph."
 	)
 	@ConfigEditorBoolean
-	public boolean graphEnabled = true;
+	public boolean graphEnabled = false;
 
 	@Expose
 	@ConfigOption(

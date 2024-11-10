@@ -23,10 +23,18 @@ import com.google.gson.annotations.Expose;
 import io.github.moulberry.moulconfig.annotations.ConfigAccordionId;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorAccordion;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorBoolean;
+import io.github.moulberry.moulconfig.annotations.ConfigEditorInfoText;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorSlider;
 import io.github.moulberry.moulconfig.annotations.ConfigOption;
 
 public class RecipeTweaks {
+	@Expose
+	@ConfigOption(
+		name = "\u00A7cWarning",
+		desc = "This feature is partially working in Fakepixel, since there is no supercraft"
+	)
+	@ConfigEditorInfoText()
+	public boolean minionWarning = false;
 
 	@ConfigOption(
 		name = "Search GUI",
@@ -39,20 +47,21 @@ public class RecipeTweaks {
 	@ConfigOption(
 		name = "Add Button in /recipes",
 		desc = "Replaces the sign gui with an advanced search GUI for recipes\n" +
-		"You can also use /recipe to open the GUI"
+		"\u00A7cWarning: This feature is not working in Fakepixel Skyblock. No recipes command"
 	)
-	@ConfigEditorBoolean
+	@ConfigEditorInfoText()
 	@ConfigAccordionId(id = 0)
 	public boolean enableSearchOverlay = true;
 
 	@Expose
 	@ConfigOption(
 		name = "Add Button In Crafting Table",
-		desc = "Adds a button in /craft to open the recipe search overlay"
+		desc = "Adds a button in /craft to open the recipe search overlay\n" +
+			"\u00A7cWarning: This feature is not working in Fakepixel Skyblock, no supercraft."
 	)
-	@ConfigEditorBoolean
+	@ConfigEditorInfoText()
 	@ConfigAccordionId(id = 0)
-	public boolean addPickaxeStack = true;
+	public boolean addPickaxeStack = false;
 
 	@Expose
 	@ConfigOption(

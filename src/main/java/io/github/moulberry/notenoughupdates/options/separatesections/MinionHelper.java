@@ -21,10 +21,19 @@ package io.github.moulberry.notenoughupdates.options.separatesections;
 
 import com.google.gson.annotations.Expose;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorBoolean;
+import io.github.moulberry.moulconfig.annotations.ConfigEditorInfoText;
 import io.github.moulberry.moulconfig.annotations.ConfigOption;
 
 //TODO jani rename message format
 public class MinionHelper {
+	@Expose
+	@ConfigOption(
+		name = "\u00A7cWarning",
+		desc = "This feature is not working in Fakepixel Skyblock"
+	)
+	@ConfigEditorInfoText()
+	public boolean minionWarning = false;
+
 	@Expose
 	@ConfigOption(
 		name = "Enable gui",
@@ -33,13 +42,13 @@ public class MinionHelper {
 				"that you need to get the next minion slot, sorted by upgrade cost"
 	)
 
-	@ConfigEditorBoolean
-	public boolean gui = true;
+	@ConfigEditorInfoText()
+	public boolean gui = false;
 	@Expose
 	@ConfigOption(
 		name = "Enable tooltip",
 		desc = "Shows the price per minion at the crafted minions "
 	)
 	@ConfigEditorBoolean
-	public boolean tooltip = true;
+	public boolean tooltip = false;
 }

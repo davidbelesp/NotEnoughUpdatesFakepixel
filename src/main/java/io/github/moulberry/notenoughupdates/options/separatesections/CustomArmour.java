@@ -22,6 +22,7 @@ package io.github.moulberry.notenoughupdates.options.separatesections;
 import com.google.gson.annotations.Expose;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorBoolean;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorDropdown;
+import io.github.moulberry.moulconfig.annotations.ConfigEditorInfoText;
 import io.github.moulberry.moulconfig.annotations.ConfigOption;
 
 public class CustomArmour {
@@ -38,10 +39,11 @@ public class CustomArmour {
 	@Expose
 	@ConfigOption(
 		name = "Click To Open Equipment Menu",
-		desc = "Click on the hud to open /equipment"
+		desc = "Click on the hud to open \n" +
+			"\u00A7cWarning: This feature is disabled as there is no /equipment command."
 	)
-	@ConfigEditorBoolean
-	public boolean sendWardrobeCommand = true;
+	@ConfigEditorInfoText()
+	public boolean sendWardrobeCommand = false;
 
 	@Expose
 	@ConfigOption(

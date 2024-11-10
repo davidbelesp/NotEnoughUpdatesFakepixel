@@ -23,13 +23,14 @@ import com.google.gson.annotations.Expose;
 import io.github.moulberry.moulconfig.annotations.ConfigAccordionId;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorAccordion;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorBoolean;
+import io.github.moulberry.moulconfig.annotations.ConfigEditorInfoText;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorSlider;
 import io.github.moulberry.moulconfig.annotations.ConfigOption;
 
 public class BazaarTweaks {
 
 		@ConfigOption(
-			name = "Search GUI",
+			name = "\u00a7mSearch GUI",
 			desc = ""
 		)
 		@ConfigEditorAccordion(id = 0)
@@ -38,11 +39,12 @@ public class BazaarTweaks {
 		@Expose
 		@ConfigOption(
 			name = "Enable Bazaar Search GUI",
-			desc = "Use the advanced search GUI with autocomplete and history instead of the normal sign GUI"
+			desc = "Use the advanced search GUI with autocomplete and history instead of the normal sign GUI\n" +
+				"\u00A7cWarning: This feature is not working in Fakepixel Skyblock, no search in bazaar"
 		)
-		@ConfigEditorBoolean
+		@ConfigEditorInfoText()
 		@ConfigAccordionId(id = 0)
-		public boolean enableSearchOverlay = true;
+		public boolean enableSearchOverlay = false;
 
 		@Expose
 		@ConfigOption(
@@ -60,7 +62,7 @@ public class BazaarTweaks {
 		)
 		@ConfigEditorBoolean
 		@ConfigAccordionId(id = 0)
-		public boolean showPastSearches = true;
+		public boolean showPastSearches = false;
 
 		@Expose
 		@ConfigOption(
@@ -70,7 +72,7 @@ public class BazaarTweaks {
 		)
 		@ConfigEditorBoolean
 		@ConfigAccordionId(id = 0)
-		public boolean escFullClose = true;
+		public boolean escFullClose = false;
 
 	@Expose
 	@ConfigOption(
@@ -96,8 +98,8 @@ public class BazaarTweaks {
 	@Expose
 	@ConfigOption(
 		name = "CTRL+F for search",
-		desc = "Open search GUI when pressing CTRL + F in the bazaar"
+		desc = "Open search GUI when pressing CTRL + F in the bazaar " + "\u00A7cWarning: This feature is not working in Fakepixel Skyblock, no search in bazaar"
 	)
-	@ConfigEditorBoolean()
-	public boolean ctrlFSearch = true;
+	@ConfigEditorInfoText()
+	public boolean ctrlFSearch = false;
 }

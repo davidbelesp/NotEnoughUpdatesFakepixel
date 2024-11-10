@@ -43,7 +43,8 @@ public class Dungeons {
 	@ConfigOption(
 		name = "Edit Dungeon Map",
 		desc = "The NEU dungeon map has its own editor (/neumap).\n" +
-			"Click the button on the left to open it"
+			"Click the button on the left to open it\n" +
+			"\u00a7cWarning: Use the SBA dungeon map, since this is pre rendered"
 	)
 	@ConfigEditorButton(
 		runnableId = 0,
@@ -71,14 +72,15 @@ public class Dungeons {
 	@Expose
 	@ConfigOption(
 		name = "Riddle solver",
-		desc = "Solves the three weirdos puzzle"
+		desc = "Solves the three weirdos puzzle\n" +
+			""
 	)@ConfigEditorBoolean()
 	@ConfigAccordionId(id = 5)
-	public boolean riddleSolver = false;
+	public boolean riddleSolver = true;
 
 	@ConfigOption(
 		name = "Dungeon Profit",
-		desc = ""
+		desc = "\u00a7eMade by \u00a76[MVP\u00a7c++\u00a76]2pb"
 	)
 	@ConfigEditorAccordion(id = 1)
 	public boolean dungeonProfitAccordion = false;

@@ -23,6 +23,7 @@ import com.google.gson.annotations.Expose;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorBoolean;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorDraggableList;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorDropdown;
+import io.github.moulberry.moulconfig.annotations.ConfigEditorInfoText;
 import io.github.moulberry.moulconfig.annotations.ConfigOption;
 import io.github.moulberry.notenoughupdates.core.config.Position;
 
@@ -34,9 +35,10 @@ public class PetOverlay {
 	@Expose
 	@ConfigOption(
 		name = "Enable Pet Info Overlay",
-		desc = "Shows current active pet and pet exp on screen."
+		desc = "Shows current active pet and pet exp on screen. \n" +
+			"\u00a7cWarning: This feature is disabled as it is not working. Might be fixed in the future."
 	)
-	@ConfigEditorBoolean
+	@ConfigEditorInfoText()
 	public boolean enablePetInfo = false;
 
 	@Expose

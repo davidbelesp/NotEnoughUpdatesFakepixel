@@ -23,18 +23,26 @@ import com.google.gson.annotations.Expose;
 import io.github.moulberry.moulconfig.annotations.ConfigAccordionId;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorAccordion;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorBoolean;
+import io.github.moulberry.moulconfig.annotations.ConfigEditorInfoText;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorKeybind;
 import io.github.moulberry.moulconfig.annotations.ConfigOption;
 import org.lwjgl.input.Keyboard;
 
 public class WardrobeKeybinds {
+	@Expose
+	@ConfigOption(
+		name = "\u00A7cWarning",
+		desc = "This feature is not working in Fakepixel Skyblock, will be fixed soon."
+	)
+	@ConfigEditorInfoText()
+	public boolean wardrobeWarning = false;
 
 	@Expose
 	@ConfigOption(
 		name = "Enable Wardrobe Keybinds",
 		desc = "Lets you use your number keys to quickly change your wardrobe"
 	)
-	@ConfigEditorBoolean
+	@ConfigEditorInfoText()
 	public boolean enableWardrobeKeybinds = false;
 
 	@ConfigOption(

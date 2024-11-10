@@ -27,6 +27,7 @@ import io.github.moulberry.moulconfig.annotations.ConfigEditorButton;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorColour;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorDraggableList;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorDropdown;
+import io.github.moulberry.moulconfig.annotations.ConfigEditorInfoText;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorSlider;
 import io.github.moulberry.moulconfig.annotations.ConfigOption;
 import io.github.moulberry.moulconfig.observer.Property;
@@ -151,7 +152,8 @@ public class Mining {
 	@Expose
 	@ConfigOption(
 		name = "Drill Fuel Bar",
-		desc = "Show a fancy drill fuel bar when holding a drill in mining areas"
+		desc = "Show a fancy drill fuel bar when holding a drill in mining areas\n" +
+			"\u00a7eWarning: this feature requires testing and may not work as expected"
 	)
 	@ConfigEditorBoolean
 	@ConfigAccordionId(id = 1)
@@ -172,6 +174,15 @@ public class Mining {
 
 	@Expose
 	public Position drillFuelBarPosition = new Position(0, -91, true, false);
+
+	@Expose
+	@ConfigOption(
+		name = "Puzzler Solver",
+		desc = "Show the correct block to mine for the puzzler puzzle in Dwarven Mines\n" +
+			"\u00a7eRemake by 2pb"
+	)
+	@ConfigEditorBoolean
+	public boolean puzzlerSolver = true;
 
 	@ConfigOption(
 		name = "Dwarven Overlay",
@@ -327,11 +338,20 @@ public class Mining {
 	public boolean commissionTaskTipNewLine = true;
 
 	@ConfigOption(
-		name = "Metal Detector Solver",
+		name = "\u00a7cMetal Detector Solver",
 		desc = ""
 	)
 	@ConfigEditorAccordion(id = 3)
 	public boolean metalDetectorSolverAccordion = false;
+
+	@Expose
+	@ConfigOption(
+		name = "\u00a7cWarning",
+		desc = "This feature is disabled since there is no crystal hollows."
+	)
+	@ConfigEditorInfoText()
+	@ConfigAccordionId(id = 3)
+	public boolean metalDetectorWarning = false;
 
 	@Expose
 	@ConfigOption(
@@ -340,9 +360,9 @@ public class Mining {
 			"Enabled the metal detector solver for Mines of Divan, to use this stand still to calculate possible blocks and then if required stand" +
 				" still on another block."
 	)
-	@ConfigEditorBoolean
+	@ConfigEditorInfoText()
 	@ConfigAccordionId(id = 3)
-	public boolean metalDetectorEnabled = true;
+	public boolean metalDetectorEnabled = false;
 
 	@Expose
 	@ConfigOption(
@@ -351,7 +371,7 @@ public class Mining {
 	)
 	@ConfigEditorBoolean
 	@ConfigAccordionId(id = 3)
-	public boolean metalDetectorLineToSolution = true;
+	public boolean metalDetectorLineToSolution = false;
 
 	@Expose
 	@ConfigOption(
@@ -412,7 +432,7 @@ public class Mining {
 	public int metalDetectorTicks = 20;
 
 	@ConfigOption(
-		name = "Crystal Hollows Overlay",
+		name = "\u00a7cCrystal Hollows Overlay",
 		desc = ""
 	)
 	@ConfigEditorAccordion(id = 4)
@@ -421,11 +441,12 @@ public class Mining {
 	@Expose
 	@ConfigOption(
 		name = "Enable Crystal Overlay",
-		desc = "Enables the Crystal Hollows Overlay."
+		desc = "Enables the Crystal Hollows Overlay.\n" +
+			"\u00a7eWarning: This feature is disabled as there is no crystal hollows."
 	)
-	@ConfigEditorBoolean
+	@ConfigEditorInfoText()
 	@ConfigAccordionId(id = 4)
-	public boolean crystalHollowOverlay = true;
+	public boolean crystalHollowOverlay = false;
 
 	@Expose
 	public Position crystalHollowOverlayPosition = new Position(200, 0);
@@ -835,7 +856,7 @@ public class Mining {
 	public int crystalHollowNoneColor = 12;
 
 	@ConfigOption(
-		name = "Wishing Compass Solver",
+		name = "\u00a7cWishing Compass Solver",
 		desc = ""
 	)
 	@ConfigEditorAccordion(id = 7)
@@ -844,11 +865,12 @@ public class Mining {
 	@Expose
 	@ConfigOption(
 		name = "Enable Solver",
-		desc = "Show wishing compass target coordinates based on two samples"
+		desc = "Show wishing compass target coordinates based on two samples\n" +
+			"\u00a7eWarning: this feature is disabled as there is no crystal hollows."
 	)
 	@ConfigAccordionId(id = 7)
 	@ConfigEditorBoolean
-	public boolean wishingCompassSolver = true;
+	public boolean wishingCompassSolver = false;
 
 	@Expose
 	@ConfigOption(
@@ -871,7 +893,7 @@ public class Mining {
 	public int wishingCompassWaypointNames = 0;
 
 	@ConfigOption(
-		name = "Powder Grinding Tracker",
+		name = "\u00a7cPowder Grinding Tracker",
 		desc = ""
 	)
 	@ConfigEditorAccordion(id = 9)
@@ -880,7 +902,8 @@ public class Mining {
 	@Expose
 	@ConfigOption(
 		name = "Enable Tracker",
-		desc = "Show an Overlay with useful information related to Powder Grinding"
+		desc = "Show an Overlay with useful information related to Powder Grinding\n" +
+			"\u00a7eWarning: this feature is disabled as there is no crystal hollows."
 	)
 	@ConfigAccordionId(id = 9)
 	@ConfigEditorBoolean
@@ -945,19 +968,12 @@ public class Mining {
 
 	@Expose
 	@ConfigOption(
-		name = "Puzzler Solver",
-		desc = "Show the correct block to mine for the puzzler puzzle in Dwarven Mines"
-	)
-	@ConfigEditorBoolean
-	public boolean puzzlerSolver = true;
-
-	@Expose
-	@ConfigOption(
 		name = "Titanium Alert",
-		desc = "Show an alert whenever titanium appears nearby"
+		desc = "Show an alert whenever titanium appears nearby\n" +
+			"\u00a7eWarning: this feature is disabled since commission parsing don't work."
 	)
 	@ConfigEditorBoolean
-	public boolean titaniumAlert = true;
+	public boolean titaniumAlert = false;
 
 	@Expose
 	@ConfigOption(
@@ -1012,10 +1028,11 @@ public class Mining {
 	@Expose
 	@ConfigOption(
 		name = "Mineshaft Exit Waypoint",
-		desc = "Show a waypoint towards the exit of a Glacite Mineshaft"
+		desc = "Show a waypoint towards the exit of a Glacite Mineshaft\n" +
+			"\u00a7cWarning: this feature is disabled as there is no Glacite Mineshafts."
 	)
-	@ConfigEditorBoolean
-	public boolean mineshaftExitWaypoint = true;
+	@ConfigEditorInfoText()
+	public boolean mineshaftExitWaypoint = false;
 
 	@Expose
 	@ConfigOption(

@@ -24,35 +24,10 @@ import io.github.moulberry.moulconfig.annotations.ConfigAccordionId;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorAccordion;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorBoolean;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorColour;
+import io.github.moulberry.moulconfig.annotations.ConfigEditorInfoText;
 import io.github.moulberry.moulconfig.annotations.ConfigOption;
 
 public class WorldConfig {
-
-	@Expose
-	@ConfigOption(
-		name = "Glowing Mushrooms",
-		desc = ""
-	)
-	@ConfigEditorAccordion(id = 1)
-	public boolean glowingMushroomAccordion = true;
-
-	@Expose
-	@ConfigOption(
-		name = "Highlight Glowing Mushrooms",
-		desc = "Highlight glowing mushrooms in the mushroom gorge"
-	)
-	@ConfigEditorBoolean
-	@ConfigAccordionId(id = 1)
-	public boolean highlightGlowingMushrooms = false;
-
-	@Expose
-	@ConfigOption(
-		name = "Glowing Mushroom Colour",
-		desc = "In which colour should glowing mushrooms be highlighted"
-	)
-	@ConfigEditorColour
-	@ConfigAccordionId(id = 1)
-	public String glowingMushroomColor2 = "0:100:142:88:36";
 
 	@Expose
 	@ConfigOption(
@@ -91,7 +66,8 @@ public class WorldConfig {
 	@Expose
 	@ConfigOption(
 		name = "Highlight Frozen Treasures",
-		desc = "Highlight frozen treasures in a glacial cave"
+		desc = "Highlight frozen treasures in a glacial cave\n" +
+			"\u00A7cWarning: This feature requires testing and may not work as expected"
 	)
 	@ConfigEditorBoolean
 	@ConfigAccordionId(id = 3)
@@ -108,7 +84,7 @@ public class WorldConfig {
 
 	@Expose
 	@ConfigOption(
-		name = "Crystal Hollow Chests",
+		name = "\u00A7cCrystal Hollow Chests",
 		desc = ""
 	)
 	@ConfigEditorAccordion(id = 4)
@@ -117,9 +93,10 @@ public class WorldConfig {
 	@Expose
 	@ConfigOption(
 		name = "Crystal Hollow Chest Highlighter",
-		desc = "Highlights chests found in the crystal hollows whilst powder mining"
+		desc = "Highlights chests found in the crystal hollows whilst powder mining\n" +
+			"\u00A7cWarning: This feature is disabled as there is no crystal hollows."
 	)
-	@ConfigEditorBoolean
+	@ConfigEditorInfoText
 	@ConfigAccordionId(id = 4)
 	public boolean highlightCrystalHollowChests = false;
 
@@ -131,4 +108,31 @@ public class WorldConfig {
 	@ConfigEditorColour
 	@ConfigAccordionId(id = 4)
 	public String crystalHollowChestColor = "0:66:255:0:41";
+
+	@Expose
+	@ConfigOption(
+		name = "\u00A7cGlowing Mushrooms",
+		desc = ""
+	)
+	@ConfigEditorAccordion(id = 1)
+	public boolean glowingMushroomAccordion = true;
+
+	@Expose
+	@ConfigOption(
+		name = "Highlight Glowing Mushrooms",
+		desc = "Highlight glowing mushrooms in the mushroom gorge \n" +
+			"\u00A7cWarning: This feature is disabled as there are no glowing mushrooms."
+	)
+	@ConfigEditorInfoText()
+	@ConfigAccordionId(id = 1)
+	public boolean highlightGlowingMushrooms = false;
+
+	@Expose
+	@ConfigOption(
+		name = "Glowing Mushroom Colour",
+		desc = "In which colour should glowing mushrooms be highlighted"
+	)
+	@ConfigEditorColour
+	@ConfigAccordionId(id = 1)
+	public String glowingMushroomColor2 = "0:100:142:88:36";
 }

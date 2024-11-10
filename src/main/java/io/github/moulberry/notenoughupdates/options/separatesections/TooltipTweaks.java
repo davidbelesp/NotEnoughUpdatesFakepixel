@@ -25,6 +25,7 @@ import io.github.moulberry.moulconfig.annotations.ConfigEditorAccordion;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorBoolean;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorDraggableList;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorDropdown;
+import io.github.moulberry.moulconfig.annotations.ConfigEditorInfoText;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorKeybind;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorSlider;
 import io.github.moulberry.moulconfig.annotations.ConfigOption;
@@ -124,10 +125,11 @@ public class TooltipTweaks {
 	@Expose
 	@ConfigOption(
 		name = "Price Info (Inv)",
-		desc = "Show price information for items in your inventory"
+		desc = "Show price information for items in your inventory \n" +
+			"\u00a7cWarning: This will take HYPIXEL API prices and can be Inaccurate!"
 	)
 	@ConfigEditorBoolean
-	public boolean showPriceInfoInvItem = true;
+	public boolean showPriceInfoInvItem = false;
 
 	@Expose
 	@ConfigOption(
@@ -135,7 +137,7 @@ public class TooltipTweaks {
 		desc = "Show price information for auctioned items"
 	)
 	@ConfigEditorBoolean
-	public boolean showPriceInfoAucItem = true;
+	public boolean showPriceInfoAucItem = false;
 
 	@Expose
 	@ConfigOption(

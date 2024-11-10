@@ -25,6 +25,7 @@ import io.github.moulberry.moulconfig.annotations.ConfigEditorAccordion;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorBoolean;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorButton;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorDropdown;
+import io.github.moulberry.moulconfig.annotations.ConfigEditorInfoText;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorKeybind;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorSlider;
 import io.github.moulberry.moulconfig.annotations.ConfigOption;
@@ -133,12 +134,13 @@ public class Misc {
 	@Expose
 	@ConfigOption(
 		name = "Replace Chat Social Options",
-		desc = "Replace Hypixel's chat social options with NEU's profile viewer or with /ah"
+		desc = "Replace Hypixel's chat social options with NEU's profile viewer or with /ah\n" +
+			"\u00A7cWarning: This feature does not work as it uses Hypixel API"
 	)
 	@ConfigEditorDropdown(
 		values = {"Off", "/pv", "/ah"}
 	)
-	public int replaceSocialOptions1 = 1;
+	public int replaceSocialOptions1 = 0;
 
 	@Expose
 	@ConfigOption(
@@ -153,9 +155,11 @@ public class Misc {
 	@ConfigOption(
 		name = "Profile Viewer",
 		desc = "Brings up the profile viewer (/pv)\n" +
-			"Shows stats and networth of players"
+			"Shows stats and networth of players\n" +
+			"\u00A7cWarning: This feature does not work as it uses Hypixel API"
 	)
-	@ConfigEditorButton(runnableId = 13, buttonText = "Open")
+	@ConfigEditorInfoText()
+	//@ConfigEditorButton(runnableId = 13, buttonText = "Open")
 	public boolean openPV = true;
 
 	@ConfigOption(

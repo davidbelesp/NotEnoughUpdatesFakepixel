@@ -365,12 +365,7 @@ public class NEUConfig extends Config {
 	)
 	public SlayerOverlay slayerOverlay = new SlayerOverlay();
 
-	@Expose
-	@Category(
-		name = "Storage GUI",
-		desc = "\u00a7cStorage GUI is NOT SUPPORTED by Fakepixel by now"
-	)
-	public StorageGUI storageGUI = new StorageGUI();
+
 
 	@Expose
 	@Category(
@@ -402,13 +397,6 @@ public class NEUConfig extends Config {
 
 	@Expose
 	@Category(
-		name = "Garden",
-		desc = "Garden"
-	)
-	public Garden garden = new Garden();
-
-	@Expose
-	@Category(
 		name = "Improved SB Menus",
 		desc = "Improved SB Menus"
 	)
@@ -437,13 +425,6 @@ public class NEUConfig extends Config {
 
 	@Expose
 	@Category(
-		name = "Pet Overlay",
-		desc = "Pet Overlay"
-	)
-	public PetOverlay petOverlay = new PetOverlay();
-
-	@Expose
-	@Category(
 		name = "World Renderer",
 		desc = "In World Renderers"
 	)
@@ -458,31 +439,10 @@ public class NEUConfig extends Config {
 
 	@Expose
 	@Category(
-		name = "Bazaar Tweaks",
-		desc = "Tweaks for the Bazaar"
-	)
-	public BazaarTweaks bazaarTweaks = new BazaarTweaks();
-
-	@Expose
-	@Category(
 		name = "Recipe Tweaks",
 		desc = "Tweaks for the Recipe Search"
 	)
 	public RecipeTweaks recipeTweaks = new RecipeTweaks();
-
-	@Expose
-	@Category(
-		name = "Price Graph",
-		desc = "Graph of auction and bazaar prices"
-	)
-	public AHGraph ahGraph = new AHGraph();
-
-	@Expose
-	@Category(
-		name = "Wardrobe Keybinds",
-		desc = "Keybinds for your wardrobe"
-	)
-	public WardrobeKeybinds wardrobeKeybinds = new WardrobeKeybinds();
 
 	@Expose
 	@Category(
@@ -500,21 +460,63 @@ public class NEUConfig extends Config {
 
 	@Expose
 	@Category(
-		name = "Profile Viewer",
+		name = "\u00a7c\u00a7mWardrobe Keybinds",
+		desc = "Keybinds for your wardrobe"
+	)
+	public WardrobeKeybinds wardrobeKeybinds = new WardrobeKeybinds();
+
+	@Expose
+	@Category(
+		name = "\u00a7c\u00a7mPet Overlay",
+		desc = "Pet Overlay"
+	)
+	public PetOverlay petOverlay = new PetOverlay();
+
+	@Expose
+	@Category(
+		name = "\u00a7c\u00a7mProfile Viewer",
 		desc = "Profile Viewer"
 	)
 	public ProfileViewer profileViewer = new ProfileViewer();
 
 	@Expose
 	@Category(
-		name = "Minion Helper",
+		name = "\u00a7c\u00a7mBazaar Tweaks",
+		desc = "Tweaks for the Bazaar"
+	)
+	public BazaarTweaks bazaarTweaks = new BazaarTweaks();
+
+	@Expose
+	@Category(
+		name = "\u00a7c\u00a7mPrice Graph",
+		desc = "Graph of auction and bazaar prices"
+	)
+	public AHGraph ahGraph = new AHGraph();
+
+	@Expose
+	@Category(
+		name = "\u00a7c\u00a7mMinion Helper",
 		desc = "Minion Helper"
 	)
 	public MinionHelper minionHelper = new MinionHelper();
 
 	@Expose
 	@Category(
-		name = "Apis",
+		name = "\u00a7c\u00a7mStorage GUI",
+		desc = "\u00a7cStorage GUI is NOT SUPPORTED by Fakepixel by now"
+	)
+	public StorageGUI storageGUI = new StorageGUI();
+
+	@Expose
+	@Category(
+		name = "\u00a7c\u00a7mGarden",
+		desc = "Garden"
+	)
+	public Garden garden = new Garden();
+
+	@Expose
+	@Category(
+		name = "\u00a7c\u00a7mApis",
 		desc = "Api Data"
 	)
 	public ApiData apiData = new ApiData();

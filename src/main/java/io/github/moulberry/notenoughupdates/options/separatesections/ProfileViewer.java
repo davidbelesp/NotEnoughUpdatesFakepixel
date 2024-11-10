@@ -20,6 +20,7 @@
 package io.github.moulberry.notenoughupdates.options.separatesections;
 
 import com.google.gson.annotations.Expose;
+import io.github.moulberry.moulconfig.annotations.ConfigEditorInfoText;
 import io.github.moulberry.notenoughupdates.BuildFlags;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorBoolean;
 import io.github.moulberry.moulconfig.annotations.ConfigEditorButton;
@@ -31,6 +32,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ProfileViewer {
+	@Expose
+	@ConfigOption(
+		name = "\u00A7cWarning",
+		desc = "This feature is not working in Fakepixel since it uses the hypixel API.\n" +
+			"Use '/viewprofile <username>' if you are MVP++ or the discord bot."
+	)
+	@ConfigEditorInfoText()
+	public boolean minionWarning = false;
 
 	@Expose
 	@ConfigOption(
@@ -93,7 +102,7 @@ public class ProfileViewer {
 		desc = "Replaces NEU networth with Soopy networth in /pv and /peek"
 	)
 	@ConfigEditorBoolean
-	public boolean useSoopyNetworth = true;
+	public boolean useSoopyNetworth = false;
 
 	@Expose
 	@ConfigOption(
@@ -101,5 +110,5 @@ public class ProfileViewer {
 		desc = "Display Lily and Senither Weight in the Basic PV page"
 	)
 	@ConfigEditorBoolean
-	public boolean displayWeight = true;
+	public boolean displayWeight = false;
 }
