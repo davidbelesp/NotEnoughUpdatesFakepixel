@@ -34,6 +34,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -332,6 +333,9 @@ public class EnchantingSolvers {
 		IInventory lower = container.getLowerChestInventory();
 
 		if (currentSolver == SolverType.CHRONOMATRON) {
+			// ---------------------------------------------------
+			//Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("currentSolver: CHRONOMATRON"));
+
 			ItemStack timerStack = lower.getStackInSlot(lower.getSizeInventory() - 5);
 			if (timerStack == null) {
 				return;
@@ -340,12 +344,18 @@ public class EnchantingSolvers {
 			boolean yepClock = timerStack.getItem() == Items.clock;
 			if (timerStack.getItem() == Item.getItemFromBlock(Blocks.glowstone) ||
 				(yepClock && (!addToChronomatron || chronomatronOrder.size() < lastChronomatronSize + 1))) {
-				event.setCanceled(true);
+//				Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("\u00a7cCANCELLING EVENT: NOT GLOWSTONE OR CLOCK"));
+//				Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("\u00a7dIs glowstone: " + (timerStack.getItem() == Item.getItemFromBlock(Blocks.glowstone))));
+//				Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("\u00a7aIs clock: " + yepClock));
+//				Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("\u00a7baddToChronomatron: " + addToChronomatron));
+//				Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("\u00a7cchronomatronOrder.size() < last " + (chronomatronOrder.size() < lastChronomatronSize + 1)));
+//				//event.setCanceled(true);
 				return;
 			}
 			if (yepClock) {
 				long currentTime = System.currentTimeMillis();
 				if (currentTime - millisLastClick < 150) {
+					//Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("CANCELLING EVENT: TOO FAST"));
 					event.setCanceled(true);
 					return;
 				}
@@ -414,7 +424,7 @@ public class EnchantingSolvers {
 
 			if (currentSolver == SolverType.CHRONOMATRON) {
 				ItemStack timerStack = lower.getStackInSlot(lower.getSizeInventory() - 5);
-				if (timerStack == null) {
+				if (timerStack == null || timerStack.getDisplayName().equals("")) {
 					return;
 				}
 
