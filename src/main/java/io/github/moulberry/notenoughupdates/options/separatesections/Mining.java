@@ -153,7 +153,7 @@ public class Mining {
 	@ConfigOption(
 		name = "Drill Fuel Bar",
 		desc = "Show a fancy drill fuel bar when holding a drill in mining areas\n" +
-			"\u00a7eWarning: this feature requires testing and may not work as expected"
+			"\u00a7eRemake by 2pb"
 	)
 	@ConfigEditorBoolean
 	@ConfigAccordionId(id = 1)
