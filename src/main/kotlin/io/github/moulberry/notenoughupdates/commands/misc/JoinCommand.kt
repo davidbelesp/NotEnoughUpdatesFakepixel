@@ -44,6 +44,8 @@ class JoinCommand {
 
     @SubscribeEvent
     fun onCommands(event: RegisterBrigadierCommandEvent) {
+        // DISABLING JOIN COMMAND EVENT (NOT WORKING IN FAKEPIXEL)
+        /*
         event.command("join") {
             thenArgumentExecute("what", RestArgumentType) { what ->
                 if (!NotEnoughUpdates.INSTANCE.isOnSkyblock) {
@@ -60,6 +62,7 @@ class JoinCommand {
                 }
             }
         }
+        */
     }
 
     fun CommandContext<DefaultSource>.getNameFor(w: String): String? {

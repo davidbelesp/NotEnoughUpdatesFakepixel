@@ -189,15 +189,6 @@ public class ItemOverlays {
 	@ConfigAccordionId(id = 3)
 	public int smoothTpMillisEtherwarp = 50;
 
-	@Expose
-	@ConfigOption(
-		name = "Disable Hyperion Particles",
-		desc = "Remove the explosion effect when using a hyperion"
-	)
-	@ConfigEditorBoolean
-	@ConfigAccordionId(id = 3)
-	public boolean disableHyperionParticles = true;
-
 	@ConfigOption(
 		name = "\u00a7cEtherwarp",
 		desc = ""

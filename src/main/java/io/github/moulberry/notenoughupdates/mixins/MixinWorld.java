@@ -38,7 +38,7 @@ public class MixinWorld {
 		int particleID, boolean p_175720_2_, double xCood, double yCoord, double zCoord,
 		double xOffset, double yOffset, double zOffset, int[] p_175720_15_, CallbackInfo ci
 	) {
-		if (NotEnoughUpdates.INSTANCE.config.itemOverlays.disableHyperionParticles &&
+		if (NotEnoughUpdates.INSTANCE.config.combat.disableHyperionParticles &&
 			System.currentTimeMillis() - CustomItemEffects.INSTANCE.lastUsedHyperion < 500) {
 			if (particleID == 1) {
 				ci.cancel();

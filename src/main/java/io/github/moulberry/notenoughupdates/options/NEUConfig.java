@@ -45,6 +45,7 @@ import io.github.moulberry.notenoughupdates.options.separatesections.AccessoryBa
 import io.github.moulberry.notenoughupdates.options.separatesections.ApiData;
 import io.github.moulberry.notenoughupdates.options.separatesections.BazaarTweaks;
 import io.github.moulberry.notenoughupdates.options.separatesections.Calendar;
+import io.github.moulberry.notenoughupdates.options.separatesections.Combat;
 import io.github.moulberry.notenoughupdates.options.separatesections.CustomArmour;
 import io.github.moulberry.notenoughupdates.options.separatesections.DungeonMapConfig;
 import io.github.moulberry.notenoughupdates.options.separatesections.Dungeons;
@@ -365,8 +366,6 @@ public class NEUConfig extends Config {
 	)
 	public SlayerOverlay slayerOverlay = new SlayerOverlay();
 
-
-
 	@Expose
 	@Category(
 		name = "Dungeons",
@@ -380,6 +379,13 @@ public class NEUConfig extends Config {
 		desc = "Enchanting GUI/Solvers"
 	)
 	public Enchanting enchantingSolvers = new Enchanting();
+
+	@Expose
+	@Category(
+		name = "Combat",
+		desc = "Combat"
+	)
+	public Combat combat = new Combat();
 
 	@Expose
 	@Category(
