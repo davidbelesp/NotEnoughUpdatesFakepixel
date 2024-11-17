@@ -1025,6 +1025,7 @@ public class Mining {
 	@ConfigEditorBoolean
 	public boolean mithrilSounds = false;
 
+	/*
 	@Expose
 	@ConfigOption(
 		name = "Mineshaft Exit Waypoint",
@@ -1032,6 +1033,7 @@ public class Mining {
 			"\u00a7cWarning: this feature is disabled as there is no Glacite Mineshafts."
 	)
 	@ConfigEditorInfoText()
+	*/
 	public boolean mineshaftExitWaypoint = false;
 
 	@Expose

@@ -188,14 +188,13 @@ public class ChatListener {
 		// Riddle Solver
 		if(NotEnoughUpdates.INSTANCE.config.dungeons.riddleSolver && SBInfo.getInstance().isInDungeon) {
 			// code to get the message and search if pattern matches
-			System.out.println("FORMATTED TEXT: " + e.message.getFormattedText());
 			String message = Utils.cleanColour(e.message.getUnformattedText());
 			if(message.startsWith("[NPC]")){
 
 				// Here we split the message into the NPC name and the message
 				String[] split = message.split(":");
 				String npcName = split[0].substring(6);
-				String npcMessage = split[1].substring(0);
+				String npcMessage = split[1];
 
 				// Here we check if the message contains the pattern
 				if(npcMessage.contains("The reward is not in my chest!") ||
@@ -206,8 +205,10 @@ public class ChatListener {
 					npcMessage.contains("Both of them are telling the truth. Also,")){
 
 					// Here we send a message to inform its the correct answer
+					e.setCanceled(true);
 					Minecraft.getMinecraft().thePlayer.addChatMessage(
-						new ChatComponentText(EnumChatFormatting.GREEN + "[Riddle Solver] " + EnumChatFormatting.RESET + npcName + " has the reward in their chest!")
+						new ChatComponentText(EnumChatFormatting.YELLOW + "" +
+							"[NPC] " + EnumChatFormatting.RESET + EnumChatFormatting.GREEN + npcName + EnumChatFormatting.RESET + EnumChatFormatting.GREEN + " Has the blessing!")
 					);
 				}
 			}
