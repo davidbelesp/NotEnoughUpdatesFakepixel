@@ -484,8 +484,10 @@ public class NotEnoughUpdates {
 				hasSkyblockScoreboard = false;
 				return;
 			}
-
-			if(!mc.thePlayer.getClientBrand().contains("Fakepixel")){
+			String brand = mc.thePlayer.getClientBrand();
+			Pattern p1 = Pattern.compile(".*\\..*");
+			Pattern p2 = Pattern.compile(".*\\..*\\..*");
+			if(!(p1.matcher(brand).matches() || p2.matcher(brand).matches())) {
 				return;
 			}
 
