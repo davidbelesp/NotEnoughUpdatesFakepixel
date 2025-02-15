@@ -601,46 +601,40 @@ public class AccessoryBagOverlay {
 						}
 					}
 
-					if (containerName.trim().contains("(")) {
-						String first = containerName.trim().split("\\(")[1].split("/")[0];
-						Integer currentPageNumber = Integer.parseInt(first);
-						boolean hasStack = false;
-						if (Minecraft.getMinecraft().thePlayer.openContainer instanceof ContainerChest) {
-							IInventory inv =
-								((ContainerChest) Minecraft.getMinecraft().thePlayer.openContainer).getLowerChestInventory();
-							for (int i = 0; i < inv.getSizeInventory(); i++) {
-								ItemStack stack = inv.getStackInSlot(i);
-								if (stack != null) {
-									hasStack = true;
-									if (isAccessory(stack)) {
-										boolean toAdd = true;
-										for (ItemStack accessoryStack : accessoryStacks) {
-											String s = NEUManager.getUUIDForItem(accessoryStack);
+					boolean hasStack = false;
+					if (Minecraft.getMinecraft().thePlayer.openContainer instanceof ContainerChest) {
+						IInventory inv =
+							((ContainerChest) Minecraft.getMinecraft().thePlayer.openContainer).getLowerChestInventory();
+						ItemStack stack = inv.getStackInSlot(i);
+						for (int i = 0; i < inv.getSizeInventory(); i++) {
+							if (stack != null) {
+								hasStack = true;
+								if (isAccessory(stack)) {
+									boolean toAdd = true;
+									for (ItemStack accessoryStack : accessoryStacks) {
+										String s = NEUManager.getUUIDForItem(accessoryStack);
 
-											String ss = NEUManager.getUUIDForItem(stack);
-											if (ss != null && ss.equals(s)) {
-												toAdd = false;
-												break;
-											}
+										String ss = NEUManager.getUUIDForItem(stack);
+										if (ss != null && ss.equals(s)) {
+											toAdd = false;
+											break;
 										}
-										if (toAdd) accessoryStacks.add(stack);
 									}
+									if (toAdd) accessoryStacks.add(stack);
 								}
 							}
 						}
 
 						if (hasStack) pagesVisited.add(currentPageNumber);
 
-						String second = containerName.trim().split("/")[1].split("\\)")[0];
-						//System.out.println(second + ":" + pagesVisited.size());
-						if (Integer.parseInt(second) > pagesVisited.size()) {
-							GlStateManager.color(1, 1, 1, 1);
-							Minecraft.getMinecraft().getTextureManager().bindTexture(accessory_bag_overlay);
-							GlStateManager.disableLighting();
-							Utils.drawTexturedRect(guiLeft + xSize + 4, guiTop, 168, 128, 0, 168 / 196f, 0, 1f, GL11.GL_NEAREST);
+						if (inv.getStackInSlot(inv.getSizeInventory() - 1).getDisplayName().getUnformattedText().trim().startsWith("Next Page")) {
+						 GlStateManager.color(1, 1, 1, 1);
+						 Minecraft.getMinecraft().getTextureManager().bindTexture(accessory_bag_overlay);
+						 GlStateManager.disableLighting();
+						 Utils.drawTexturedRect(guiLeft + xSize + 4, guiTop, 168, 128, 0, 168 / 196f, 0, 1f, GL11.GL_NEAREST);
 
-							renderVisitOverlay(guiLeft + xSize + 3, guiTop);
-							return;
+						 renderVisitOverlay(guiLeft + xSize + 3, guiTop);
+						 return;
 						}
 					} else if (pagesVisited.isEmpty()) {
 						boolean hasStack = false;
