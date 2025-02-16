@@ -605,8 +605,8 @@ public class AccessoryBagOverlay {
 					if (Minecraft.getMinecraft().thePlayer.openContainer instanceof ContainerChest) {
 						IInventory inv =
 							((ContainerChest) Minecraft.getMinecraft().thePlayer.openContainer).getLowerChestInventory();
-						ItemStack stack = inv.getStackInSlot(i);
 						for (int i = 0; i < inv.getSizeInventory(); i++) {
+							ItemStack stack = inv.getStackInSlot(i);
 							if (stack != null) {
 								hasStack = true;
 								if (isAccessory(stack)) {
