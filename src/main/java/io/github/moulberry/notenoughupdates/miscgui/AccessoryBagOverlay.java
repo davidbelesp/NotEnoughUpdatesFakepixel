@@ -625,9 +625,26 @@ public class AccessoryBagOverlay {
 							}
 						}
 
-						if (hasStack) pagesVisited.add(currentPageNumber);
+						ItemStack stackLastArrow = inv.getStackInSlot(inv.getSizeInventory());
+						ItemStack stackBackupArrow = inv.getStackInSlot(inv.getSizeInventory() - 8);
 
-						if (inv.getStackInSlot(inv.getSizeInventory() - 1).getDisplayName().getUnformattedText().trim().startsWith("Next Page")) {
+						for (String line : ItemUtils.getLore(stackLastArrow)) {
+							if (line.startsWith("Page")) {
+								if (itemStack == null) return;
+								List<String> lore = ItemUtils.getLore(stackLastArrow);
+								pagesVisited.add(lore.getUnformattedText().trim().split("Page ").toInt() - 1); 
+							} else {
+								for (String line : ItemUtils.getLore(stackBackupArrow) {
+									if (line.startsWith("Page")) {
+										if (itemStack == null) return;
+										List<String> lore = ItemUtils.getLore(stackBackupArrow);
+										pagesVisited.add(lore.getUnformattedText().trim().split("Page ").toInt() + 1); 
+									}
+								}
+							}
+						}
+	
+						if (stackLastArrow.getDisplayName().getUnformattedText().trim().startsWith("Next Page")) {
 						 GlStateManager.color(1, 1, 1, 1);
 						 Minecraft.getMinecraft().getTextureManager().bindTexture(accessory_bag_overlay);
 						 GlStateManager.disableLighting();
