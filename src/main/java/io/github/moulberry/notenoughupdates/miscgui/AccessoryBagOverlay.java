@@ -634,7 +634,7 @@ public class AccessoryBagOverlay {
 								List<String> lore = ItemUtils.getLore(stackLastArrow);
 								pagesVisited.add(lore.getUnformattedText().trim().split("Page ").toInt() - 1); 
 							} else {
-								for (String line : ItemUtils.getLore(stackBackupArrow) {
+								for (String line : ItemUtils.getLore(stackBackupArrow)) {
 									if (line.startsWith("Page")) {
 										if (itemStack == null) return;
 										List<String> lore = ItemUtils.getLore(stackBackupArrow);
