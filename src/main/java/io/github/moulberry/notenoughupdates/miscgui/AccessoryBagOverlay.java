@@ -625,8 +625,8 @@ public class AccessoryBagOverlay {
 							}
 						}
 
-						ItemStack stackLastArrow = inv.getStackInSlot(inv.getSizeInventory());
-						ItemStack stackBackupArrow = inv.getStackInSlot(inv.getSizeInventory() - 8);
+						ItemStack stackLastArrow = inv.getStackInSlot(inv.getSizeInventory() - 1);
+						ItemStack stackBackupArrow = inv.getStackInSlot(inv.getSizeInventory() - 9);
 
 						for (String line : ItemUtils.getLore(stackLastArrow)) {
 							if (line.startsWith("Page")) {
