@@ -578,7 +578,7 @@ public class AccessoryBagOverlay {
 	}
 
 	public static String stripColorCodes(String text) {
-		static final Pattern COLOR_CODE_PATTERN = Pattern.compile("§[0-9A-FK-ORa-fk-or]");
+		Pattern COLOR_CODE_PATTERN = Pattern.compile("§[0-9A-FK-ORa-fk-or]");
 
     if (text == null) {
       return null;
