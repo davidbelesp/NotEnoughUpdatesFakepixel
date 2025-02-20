@@ -629,21 +629,26 @@ public class AccessoryBagOverlay {
 						ItemStack stackBackupArrow = inv.getStackInSlot(inv.getSizeInventory() - 9);
 
 						for (String line : ItemUtils.getLore(stackLastArrow)) {
+							// Check if the lore line starts with "Page"
 							if (line.startsWith("Page")) {
-								if (itemStack == null) return;
-								List<String> lore = ItemUtils.getLore(stackLastArrow);
-								pagesVisited.add(lore.getUnformattedText().trim().split("Page ").toInt() - 1); 
+								if (stack == null) return;
+								//List<String> lore = ItemUtils.getLore(stackLastArrow);
+								// Remove the "Page " to get the next page's number, then turn into an integer and remove 1, to get the current page number
+								pagesVisited.add(line.getUnformattedText().trim().split("Page ").toInt() - 1); 
 							} else {
 								for (String line : ItemUtils.getLore(stackBackupArrow)) {
+									// Check if the lore line starts with "Page"
 									if (line.startsWith("Page")) {
-										if (itemStack == null) return;
-										List<String> lore = ItemUtils.getLore(stackBackupArrow);
-										pagesVisited.add(lore.getUnformattedText().trim().split("Page ").toInt() + 1); 
+										if (stack == null) return;
+										//List<String> lore = ItemUtils.getLore(stackBackupArrow);
+										// Remove the "Page " to get the last page's number, then turn into an integer and add 1, to get the current page number
+										pagesVisited.add(line.getUnformattedText().trim().split("Page ").toInt() + 1); 
 									}
 								}
 							}
 						}
-	
+
+						// If the last item in the GUI has the name "Next Page", it means that not all pages have been visited yet
 						if (stackLastArrow.getDisplayName().getUnformattedText().trim().startsWith("Next Page")) {
 						 GlStateManager.color(1, 1, 1, 1);
 						 Minecraft.getMinecraft().getTextureManager().bindTexture(accessory_bag_overlay);
