@@ -577,6 +577,16 @@ public class AccessoryBagOverlay {
 		return inAccessoryBag && NotEnoughUpdates.INSTANCE.config.accessoryBag.enableOverlay;
 	}
 
+	public static String stripColorCodes(String text) {
+		Pattern COLOR_CODE_PATTERN = Pattern.compile("§[0-9A-FK-ORa-fk-or]");
+
+    if (text == null) {
+      return null;
+    }
+
+    return COLOR_CODE_PATTERN.matcher(text).replaceAll("");
+  }
+
 	public static void renderOverlay() {
 		inAccessoryBag = false;
 		offsetButtons = false;
@@ -601,29 +611,50 @@ public class AccessoryBagOverlay {
 						}
 					}
 
-					if (containerName.trim().contains("(")) {
-						String first = containerName.trim().split("\\(")[1].split("/")[0];
-						Integer currentPageNumber = Integer.parseInt(first);
-						boolean hasStack = false;
-						if (Minecraft.getMinecraft().thePlayer.openContainer instanceof ContainerChest) {
-							IInventory inv =
-								((ContainerChest) Minecraft.getMinecraft().thePlayer.openContainer).getLowerChestInventory();
-							for (int i = 0; i < inv.getSizeInventory(); i++) {
-								ItemStack stack = inv.getStackInSlot(i);
-								if (stack != null) {
-									hasStack = true;
-									if (isAccessory(stack)) {
-										boolean toAdd = true;
-										for (ItemStack accessoryStack : accessoryStacks) {
-											String s = NEUManager.getUUIDForItem(accessoryStack);
+					Integer currentPageNumber = 0;
+					boolean hasStack = false;
 
-											String ss = NEUManager.getUUIDForItem(stack);
-											if (ss != null && ss.equals(s)) {
-												toAdd = false;
-												break;
-											}
+					if (Minecraft.getMinecraft().thePlayer.openContainer instanceof ContainerChest) {
+						IInventory inv =
+							((ContainerChest) Minecraft.getMinecraft().thePlayer.openContainer).getLowerChestInventory();
+						for (int i = 0; i < inv.getSizeInventory(); i++) {
+							ItemStack stack = inv.getStackInSlot(i);
+							if (stack != null) {
+								hasStack = true;
+								if (isAccessory(stack)) {
+									boolean toAdd = true;
+									for (ItemStack accessoryStack : accessoryStacks) {
+										String s = NEUManager.getUUIDForItem(accessoryStack);
+
+										String ss = NEUManager.getUUIDForItem(stack);
+										if (ss != null && ss.equals(s)) {
+											toAdd = false;
+											break;
 										}
-										if (toAdd) accessoryStacks.add(stack);
+									}
+									if (toAdd) accessoryStacks.add(stack);
+								}
+							}
+						}
+
+						ItemStack stackLastArrow = inv.getStackInSlot(inv.getSizeInventory() - 1);
+						ItemStack stackBackupArrow = inv.getStackInSlot(inv.getSizeInventory() - 9);
+
+						if (stripColorCodes(stackLastArrow.getDisplayName()).startsWith("Next Page"))
+							for (String line1 : ItemUtils.getLore(stackLastArrow)) {
+								// Check if the lore line starts with "Page"
+								if (stripColorCodes(line1).startsWith("Page")) {
+									//List<String> lore = ItemUtils.getLore(stackLastArrow);
+									// Remove the "Page " to get the next page's number, then turn into an integer and remove 1, to get the current page number
+									currentPageNumber = Integer.parseInt(stripColorCodes(line1).split("Page ")[1]) - 1;
+								}
+							} else {
+								for (String line2 : ItemUtils.getLore(stackBackupArrow)) {
+									// Check if the lore line starts with "Page"
+									if (stripColorCodes(line2).startsWith("Page")) {
+										//List<String> lore = ItemUtils.getLore(stackBackupArrow);
+										// Remove the "Page " to get the last page's number, then turn into an integer and add 1, to get the current page number
+										currentPageNumber = Integer.parseInt(stripColorCodes(line2).split("Page ")[1]) - 1;
 									}
 								}
 							}
@@ -631,19 +662,18 @@ public class AccessoryBagOverlay {
 
 						if (hasStack) pagesVisited.add(currentPageNumber);
 
-						String second = containerName.trim().split("/")[1].split("\\)")[0];
-						//System.out.println(second + ":" + pagesVisited.size());
-						if (Integer.parseInt(second) > pagesVisited.size()) {
-							GlStateManager.color(1, 1, 1, 1);
-							Minecraft.getMinecraft().getTextureManager().bindTexture(accessory_bag_overlay);
-							GlStateManager.disableLighting();
-							Utils.drawTexturedRect(guiLeft + xSize + 4, guiTop, 168, 128, 0, 168 / 196f, 0, 1f, GL11.GL_NEAREST);
+						// If the last item in the GUI has the name "Next Page", it means that not all pages have been visited yet
+						if (stripColorCodes(stackLastArrow.getDisplayName()).trim().startsWith("Next Page")) {
+						 GlStateManager.color(1, 1, 1, 1);
+						 Minecraft.getMinecraft().getTextureManager().bindTexture(accessory_bag_overlay);
+						 GlStateManager.disableLighting();
+						 Utils.drawTexturedRect(guiLeft + xSize + 4, guiTop, 168, 128, 0, 168 / 196f, 0, 1f, GL11.GL_NEAREST);
 
-							renderVisitOverlay(guiLeft + xSize + 3, guiTop);
-							return;
+						 renderVisitOverlay(guiLeft + xSize + 3, guiTop);
+						 return;
 						}
 					} else if (pagesVisited.isEmpty()) {
-						boolean hasStack = false;
+						hasStack = false;
 						if (Minecraft.getMinecraft().thePlayer.openContainer instanceof ContainerChest) {
 							IInventory inv =
 								((ContainerChest) Minecraft.getMinecraft().thePlayer.openContainer).getLowerChestInventory();
