@@ -631,7 +631,6 @@ public class AccessoryBagOverlay {
 						for (String line : ItemUtils.getLore(stackLastArrow)) {
 							// Check if the lore line starts with "Page"
 							if (line.startsWith("Page")) {
-								if (stack == null) return;
 								//List<String> lore = ItemUtils.getLore(stackLastArrow);
 								// Remove the "Page " to get the next page's number, then turn into an integer and remove 1, to get the current page number
 								pagesVisited.add(line.getUnformattedText().trim().split("Page ").toInt() - 1); 
@@ -639,7 +638,6 @@ public class AccessoryBagOverlay {
 								for (String line : ItemUtils.getLore(stackBackupArrow)) {
 									// Check if the lore line starts with "Page"
 									if (line.startsWith("Page")) {
-										if (stack == null) return;
 										//List<String> lore = ItemUtils.getLore(stackBackupArrow);
 										// Remove the "Page " to get the last page's number, then turn into an integer and add 1, to get the current page number
 										pagesVisited.add(line.getUnformattedText().trim().split("Page ").toInt() + 1); 
@@ -659,7 +657,7 @@ public class AccessoryBagOverlay {
 						 return;
 						}
 					} else if (pagesVisited.isEmpty()) {
-						boolean hasStack = false;
+						hasStack = false;
 						if (Minecraft.getMinecraft().thePlayer.openContainer instanceof ContainerChest) {
 							IInventory inv =
 								((ContainerChest) Minecraft.getMinecraft().thePlayer.openContainer).getLowerChestInventory();
