@@ -611,7 +611,9 @@ public class AccessoryBagOverlay {
 						}
 					}
 
+					Integer currentPageNumber = 0;
 					boolean hasStack = false;
+
 					if (Minecraft.getMinecraft().thePlayer.openContainer instanceof ContainerChest) {
 						IInventory inv =
 							((ContainerChest) Minecraft.getMinecraft().thePlayer.openContainer).getLowerChestInventory();
@@ -638,23 +640,27 @@ public class AccessoryBagOverlay {
 						ItemStack stackLastArrow = inv.getStackInSlot(inv.getSizeInventory() - 1);
 						ItemStack stackBackupArrow = inv.getStackInSlot(inv.getSizeInventory() - 9);
 
-						for (String line1 : ItemUtils.getLore(stackLastArrow)) {
-							// Check if the lore line starts with "Page"
-							if (stripColorCodes(line1).startsWith("Page")) {
-								//List<String> lore = ItemUtils.getLore(stackLastArrow);
-								// Remove the "Page " to get the next page's number, then turn into an integer and remove 1, to get the current page number
-								pagesVisited.add(Integer.parseInt(stripColorCodes(line1).trim().split("Page")[1]) - 1);
+						if (stripColorCodes(stackLastArrow.getDisplayName()).startsWith("Next Page"))
+							for (String line1 : ItemUtils.getLore(stackLastArrow)) {
+								// Check if the lore line starts with "Page"
+								if (stripColorCodes(line1).startsWith("Page")) {
+									//List<String> lore = ItemUtils.getLore(stackLastArrow);
+									// Remove the "Page " to get the next page's number, then turn into an integer and remove 1, to get the current page number
+									currentPageNumber = Integer.parseInt(stripColorCodes(line1).split("Page ")[1]) - 1;
+								}
 							} else {
 								for (String line2 : ItemUtils.getLore(stackBackupArrow)) {
 									// Check if the lore line starts with "Page"
 									if (stripColorCodes(line2).startsWith("Page")) {
 										//List<String> lore = ItemUtils.getLore(stackBackupArrow);
 										// Remove the "Page " to get the last page's number, then turn into an integer and add 1, to get the current page number
-										pagesVisited.add(Integer.parseInt(stripColorCodes(line2).trim().split("Page")[1]) + 1);
+										currentPageNumber = Integer.parseInt(stripColorCodes(line2).split("Page ")[1]) - 1;
 									}
 								}
 							}
 						}
+
+						if (hasStack) pagesVisited.add(currentPageNumber);
 
 						// If the last item in the GUI has the name "Next Page", it means that not all pages have been visited yet
 						if (stripColorCodes(stackLastArrow.getDisplayName()).trim().startsWith("Next Page")) {
