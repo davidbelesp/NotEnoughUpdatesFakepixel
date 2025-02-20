@@ -577,6 +577,16 @@ public class AccessoryBagOverlay {
 		return inAccessoryBag && NotEnoughUpdates.INSTANCE.config.accessoryBag.enableOverlay;
 	}
 
+	public static String stripColorCodes(String text) {
+		static final Pattern COLOR_CODE_PATTERN = Pattern.compile("§[0-9A-FK-ORa-fk-or]");
+
+    if (text == null) {
+      return null;
+    }
+
+    return COLOR_CODE_PATTERN.matcher(text).replaceAll("");
+  }
+
 	public static void renderOverlay() {
 		inAccessoryBag = false;
 		offsetButtons = false;
@@ -628,19 +638,19 @@ public class AccessoryBagOverlay {
 						ItemStack stackLastArrow = inv.getStackInSlot(inv.getSizeInventory() - 1);
 						ItemStack stackBackupArrow = inv.getStackInSlot(inv.getSizeInventory() - 9);
 
-						for (String line : ItemUtils.getLore(stackLastArrow)) {
+						for (String line1 : ItemUtils.getLore(stackLastArrow)) {
 							// Check if the lore line starts with "Page"
-							if (line.startsWith("Page")) {
+							if (stripColorCodes(line1).startsWith("Page")) {
 								//List<String> lore = ItemUtils.getLore(stackLastArrow);
 								// Remove the "Page " to get the next page's number, then turn into an integer and remove 1, to get the current page number
-								pagesVisited.add(line.getUnformattedText().trim().split("Page ").toInt() - 1); 
+								pagesVisited.add(stripColorCodes(line1).trim().split("Page ").toInt() - 1); 
 							} else {
-								for (String line : ItemUtils.getLore(stackBackupArrow)) {
+								for (String line2 : ItemUtils.getLore(stackBackupArrow)) {
 									// Check if the lore line starts with "Page"
-									if (line.startsWith("Page")) {
+									if (stripColorCodes(line2).startsWith("Page")) {
 										//List<String> lore = ItemUtils.getLore(stackBackupArrow);
 										// Remove the "Page " to get the last page's number, then turn into an integer and add 1, to get the current page number
-										pagesVisited.add(line.getUnformattedText().trim().split("Page ").toInt() + 1); 
+										pagesVisited.add(stripColorCodes(line2).trim().split("Page ").toInt() + 1); 
 									}
 								}
 							}
