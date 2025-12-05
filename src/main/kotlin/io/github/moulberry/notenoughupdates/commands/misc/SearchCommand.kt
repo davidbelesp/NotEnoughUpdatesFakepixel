@@ -36,14 +36,14 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 class SearchCommand {
     @SubscribeEvent
     fun onCommands(event: RegisterBrigadierCommandEvent) {
-        event.command("bzs") {
-            thenArgumentExecute("search", RestArgumentType) { search ->
-                NotEnoughUpdates.INSTANCE.sendChatMessage("/bz ${this[search]}")
-            }.withHelp("Search directly without opening the GUI")
-            thenExecute {
-                NotEnoughUpdates.INSTANCE.openGui = BazaarSearchOverlay()
-            }
-        }.withHelp("Search the bazaar directly with a custom search GUI")
+//        event.command("bzs") {
+//            thenArgumentExecute("search", RestArgumentType) { search ->
+//                NotEnoughUpdates.INSTANCE.sendChatMessage("/bz ${this[search]}")
+//            }.withHelp("Search directly without opening the GUI")
+//            thenExecute {
+//                NotEnoughUpdates.INSTANCE.openGui = BazaarSearchOverlay()
+//            }
+//        }.withHelp("Search the bazaar directly with a custom search GUI")
         event.command("ahs") {
             thenArgumentExecute("search", RestArgumentType) { search ->
                 NotEnoughUpdates.INSTANCE.sendChatMessage("/ahs ${this[search]}")

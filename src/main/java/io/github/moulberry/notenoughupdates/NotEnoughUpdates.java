@@ -484,12 +484,6 @@ public class NotEnoughUpdates {
 				hasSkyblockScoreboard = false;
 				return;
 			}
-			String brand = mc.thePlayer.getClientBrand();
-			Pattern p1 = Pattern.compile(".*\\..*");
-			Pattern p2 = Pattern.compile(".*\\..*\\..*");
-			if(!(p1.matcher(brand).matches() || p2.matcher(brand).matches())) {
-				return;
-			}
 
 			Scoreboard scoreboard = mc.theWorld.getScoreboard();
 			ScoreObjective sidebarObjective = scoreboard.getObjectiveInDisplaySlot(1);
